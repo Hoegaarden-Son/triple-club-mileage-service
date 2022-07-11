@@ -1,0 +1,38 @@
+{{>layout/header}}
+
+    <h1> Triple Reviews - Events Log</h1>
+    <div class="col-md-12">
+        <br>
+        <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>번호</th>
+                <th>TYPE</th>
+                <th>ACTION</th>
+                <th>리뷰 ID</th>
+                <th>리뷰 내용</th>
+                <th>사진첨부 ID</th>
+                <th>작성자 ID</th>
+                <th>장소 ID</th>
+                <th>최종수정일</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#events}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{type}}</td>
+                    <td>{{action}}</td>
+                    <td>{{reviewId}}</td>
+                    <td>{{content}}</td>
+                    <td>{{attachedPhotoIds}}</td>
+                    <td>{{userId}}</td>
+                    <td>{{placeId}}</td>
+                    <td>{{modifiedDate}}</td>
+                </tr>
+            {{/events}}
+            </tbody>
+        </table>
+    </div>
+{{>layout/footer}}

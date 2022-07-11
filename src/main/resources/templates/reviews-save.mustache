@@ -1,0 +1,31 @@
+{{>layout/header}}
+<h1>Review 등록</h1>
+<div class="col-md-12">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="reviewId"> Review ID </label>
+                <input type="text" class="form-control" id="reviewId" placeholder="리뷰 ID를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="userId"> User ID </label>
+                <input type="text" class="form-control" id="userId" placeholder="작성자 ID를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="placeId"> Place ID </label>
+                <input type="text" class="form-control" id="placeId" placeholder="장소 ID 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="attachedPhotoIds"> Attached Photo IDs </label>
+                <input type="text" class="form-control" id="attachedPhotoIds" placeholder="첨부 사진 ID를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="content"> 내용 </label>
+                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+        </form>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <button type="button" class="btn btn-primary" id="btn-save">등록</button>
+    </div>
+</div>
+{{>layout/footer}}

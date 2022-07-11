@@ -1,0 +1,35 @@
+{{>layout/header}}
+
+    <h1> Triple Reviews web application</h1>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/reviews/save" role="button" class="btn btn-primary">Review 등록</a>
+            </div>
+        </div>
+        <br>
+        <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>번호</th>
+                <th>작성자 ID</th>
+                <th>장소 ID</th>
+                <th>리뷰 내용</th>
+                <th>최종수정일</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#reviews}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td><a href="/points/{{userId}}">{{userId}}</a></td>
+                    <td>{{placeId}}</td>
+                    <td><a href="/reviews/update/{{id}}">{{content}}</a></td>
+                    <td>{{modifiedDate}}</td>
+                </tr>
+            {{/reviews}}
+            </tbody>
+        </table>
+    </div>
+{{>layout/footer}}
