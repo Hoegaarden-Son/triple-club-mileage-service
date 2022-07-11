@@ -31,30 +31,38 @@ public class EventsApiController {
             String content = requestDto.getContent();
             String attachedPhotoIds = requestDto.getAttachedPhotoIds();
             String placeId = requestDto.getPlaceId();
+            String userId = requestDto.getUserId();
+            String reviewId = requestDto.getReviewId();
+
+            // 이미 등록된 장소 체크
+            if (reviewsService.findByPlaceIdAndUserId(placeId, userId)>=1)
+                return HttpStatus.NOT_ACCEPTABLE.toString();
 
             // Bonus point
             if (reviewsService.findByPlaceId(placeId) < 1)
                 point += 1;
-            if (content != null && content.length() >= 1)
+            if (content != null && !content.equals("")
+                    && content.length() >= 1)
                 point += 1;
-            if (attachedPhotoIds != null && attachedPhotoIds.split("|").length >= 1)
+            if (attachedPhotoIds != null && !attachedPhotoIds.equals("")
+                    && attachedPhotoIds.split("|").length >= 1)
                 point += 1;
 
             // review 저장
             ReviewsSaveRequestDto saveRequestDto = ReviewsSaveRequestDto.builder()
-                    .reviewId(requestDto.getReviewId())
-                    .content(requestDto.getContent())
-                    .attachedPhotoIds(requestDto.getAttachedPhotoIds())
-                    .userId(requestDto.getUserId())
-                    .placeId(requestDto.getPlaceId())
+                    .reviewId(reviewId)
+                    .content(content)
+                    .attachedPhotoIds(attachedPhotoIds)
+                    .userId(userId)
+                    .placeId(placeId)
                     .build();
             reviewsService.save(saveRequestDto);
 
             // Point 저장
             pointsService.save(PointsSaveRequestDto.builder()
                     .placeId(placeId)
-                    .reviewId(requestDto.getReviewId())
-                    .userId(requestDto.getUserId())
+                    .reviewId(reviewId)
+                    .userId(userId)
                     .point(point)
                     .build());
         }

@@ -17,4 +17,7 @@ public interface ReviewsRepository extends JpaRepository<Reviews, Long> {
     // limit 1 (why not?)
     @Query("SELECT count(*) FROM Reviews p WHERE p.placeId=:placeId ")
     int findByPlaceId(@Param("placeId") String placeId);
+
+    @Query("SELECT count(*) FROM Reviews p WHERE p.placeId=:placeId AND p.userId=:userId")
+    int findByPlaceIdAndUserId(@Param("placeId") String placeId, @Param("userId") String userId);
 }

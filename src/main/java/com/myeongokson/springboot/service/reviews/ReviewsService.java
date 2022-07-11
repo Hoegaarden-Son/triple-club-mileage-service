@@ -42,8 +42,13 @@ public class ReviewsService {
         return entity.getId();
     }
 
-    public int findByPlaceId (String reviewId) {
-        int count = reviewsRepository.findByPlaceId(reviewId);
+    public int findByPlaceId (String placeId) {
+        int count = reviewsRepository.findByPlaceId(placeId);
+        return count;
+    }
+
+    public int findByPlaceIdAndUserId (String placeId, String userId) {
+        int count = reviewsRepository.findByPlaceIdAndUserId(placeId, userId);
         return count;
     }
 
