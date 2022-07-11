@@ -29,7 +29,6 @@ public class PointsService {
     public Long update(Long id, PointsUpdateRequestDto requestDto) {
         Points points = pointsRepository.findById(id).orElseThrow(()
                 -> new IllegalArgumentException("해당 글이 없습니다. id="+ id));
-
         points.update(requestDto.getPoint());
         return id;
     }
@@ -39,6 +38,11 @@ public class PointsService {
         return new AllPointsResponseDto(userId, totalPoints);
     }
 
+    @Transactional(readOnly = true)
+    public Points findByReviewId (String reviewId) {
+        Points entity = pointsRepository.findByReviewId(reviewId);
+        return entity;
+    }
 
     @Transactional(readOnly = true)
     public List<PointsListResponseDto> findAllDesc() {

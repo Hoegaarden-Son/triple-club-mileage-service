@@ -37,9 +37,9 @@ public class ReviewsService {
         return new ReviewsResponseDto(entity);
     }
 
-    public Long findByReviewId (String reviewId) {
+    public Reviews findByReviewId (String reviewId) {
         Reviews entity = reviewsRepository.findByReviewId(reviewId);
-        return entity.getId();
+        return entity;
     }
 
     public int findByPlaceId (String placeId) {
